@@ -4,6 +4,15 @@ import { ProdutoFactory } from "../factories/ProdutoFactory.js";
 export class PedidoService {
   constructor(pedido) {
     this.pedido = pedido;
+    this.observers = [];
+  }
+
+  adicionarObserver(observer) {
+    this.observers.push(observer);
+  }
+
+  notificar() {
+    this.observers.forEach(observer => observer.atualizar(this.pedido));
   }
 
   adicionar(nome, qtd) {
@@ -15,10 +24,12 @@ export class PedidoService {
     const item = new ItemPedido(produto, qtd);
 
     this.pedido.adicionarItem(item);
+    this.notificar();
   }
 
   removerUltimo() {
     this.pedido.removerUltimo();
+    this.notificar();
   }
 
   calcularTotal() {
@@ -43,5 +54,6 @@ export class PedidoService {
 
   limpar() {
     this.pedido.limpar();
+    this.notificar();
   }
 }

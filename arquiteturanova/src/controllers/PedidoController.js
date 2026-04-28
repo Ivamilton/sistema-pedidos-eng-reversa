@@ -3,6 +3,7 @@ import { PedidoService } from "../services/PedidoService.js";
 import { PedidoRepository } from "../repositories/PedidoRepository.js";
 import { PedidoView } from "../views/PedidoView.js";
 import { WhatsAppService } from "../services/WhatsAppService.js";
+import { PedidoObserver } from "../observers/PedidoObserver.js";
 
 const pedidoInstance = new PedidoSingleton();
 const pedido = pedidoInstance.getPedido();
@@ -11,20 +12,22 @@ const service = new PedidoService(pedido);
 const repository = new PedidoRepository();
 const view = new PedidoView();
 
+const observer = new PedidoObserver(view);
+service.adicionarObserver(observer);
+
 window.adicionar = function () {
   try {
     const produto = document.getElementById("produto").value;
     const qtd = parseInt(document.getElementById("qtd").value);
 
     service.adicionar(produto, qtd);
-
-    const total = service.calcularTotal();
-
-    view.atualizarLista(pedido);
-    view.atualizarTotal(total);
   } catch (e) {
     alert(e.message);
   }
+};
+
+window.removerUltimo = function () {
+  service.removerUltimo();
 };
 
 window.finalizar = async function () {
@@ -52,7 +55,6 @@ window.finalizar = async function () {
     alert("Pedido salvo e enviado via WhatsApp. Total final: R$ " + totalFinal.toFixed(2));
 
     service.limpar();
-    view.limpar();
   } catch (e) {
     alert("Erro ao finalizar pedido. Verifique se o JSON Server está rodando.");
   }
