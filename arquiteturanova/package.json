@@ -1,5 +1,12 @@
 {
+  "name": "sistema-pedidos",
+  "version": "1.0.0",
+  "type": "module",
   "dependencies": {
     "json-server": "^1.0.0-beta.15"
+  },
+  "scripts": {
+    "server": "npx json-server ArquiteturaNova/src/database/db.json --port 3000",
+    "test": "node ArquiteturaNova/src/tests/PedidoService.test.js"
   }
 }
