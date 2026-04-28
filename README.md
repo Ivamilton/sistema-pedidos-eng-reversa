@@ -1,58 +1,46 @@
-#  Sistema de Pedidos - Engenharia Reversa
- IVAMILTON  FERREIRA DA SILVA JÚNIOR
-##  Sobre o Projeto
+# 🍴 Sistema de Pedidos - Arquitetura de Sistemas
 
-Este projeto consiste em um sistema de pedidos desenvolvido em HTML, CSS e JavaScript, com foco na aplicação de conceitos de Engenharia Reversa, Arquitetura de Software e Design de Software.
+## 📌 Descrição
 
-O sistema original apresentava problemas de organização e estrutura, que foram corrigidos através de refatoração e aplicação de padrões de projeto.
+Este projeto é a evolução de um sistema de pedidos simples para uma aplicação estruturada utilizando arquitetura em camadas, padrões de projeto e boas práticas.
 
----
-
-##  Objetivo da Atividade
-
-- Analisar um sistema existente  
-- Identificar problemas de design  
-- Propor melhorias  
-- Refatorar o código  
-- Aplicar padrões de projeto (Factory e Singleton)  
+O sistema permite:
+- adicionar itens
+- calcular total
+- aplicar regras de negócio
+- salvar pedidos em um backend fake
+- enviar pedidos via WhatsApp
 
 ---
 
-## 🛠️ Melhorias Realizadas
+## 🏗️ Arquitetura do Sistema
 
-- Refatoração com orientação a objetos  
-- Criação das classes:
-  - Produto  
-  - ItemPedido  
-  - Pedido  
-- Centralização da lógica  
-- Remoção de duplicação de código  
-- Redução de acoplamento  
+O sistema foi organizado em camadas:
 
----
-
-##  Padrões de Projeto
-
-### Factory
-Utilizado na criação de objetos Produto através da classe ProdutoFactory.
-
-### Singleton
-Utilizado na classe PedidoSingleton para garantir uma única instância do pedido.
+- Models → entidades (Produto, ItemPedido, Pedido)
+- Services → regras de negócio
+- Controllers → controle das ações
+- Repositories → persistência (JSON Server)
+- Views → interface
 
 ---
 
-## Diagrama UML
+## 🧠 Padrões de Projeto
 
-![Diagrama UML](uml_diagrama.png)
-
----
-
-##  Documentação
-
-[Baixar Relatório](trabalho_sistema_pedidos.docx)
+- Factory → criação de produtos (`ProdutoFactory`)
+- Singleton → instância única do pedido (`PedidoSingleton`)
+- Repository → persistência de dados (`PedidoRepository`)
+- Observer → atualização automática da interface
 
 ---
 
-##  Como Executar
+## 📡 Integrações
 
-1. Clone o repositório:
+### JSON Server
+
+Backend fake para salvar pedidos.
+
+Rodar:
+
+```bash
+npm run server
