@@ -1,3 +1,35 @@
 {
-    "pedidos":[]
+  "pedidos": [
+    {
+      "cliente": "Cliente",
+      "itens": [
+        {
+          "produto": "pastel",
+          "preco": 5,
+          "quantidade": 6,
+          "subtotal": 30
+        }
+      ],
+      "total": 30,
+      "totalFinal": 31.5,
+      "data": "28/04/2026, 11:40:56",
+      "id": "3FkwKDVXybc"
+    },
+    {
+      "cliente": "Cliente",
+      "itens": [
+        {
+          "produto": "caldo",
+          "preco": 7,
+          "quantidade": 6,
+          "subtotal": 42
+        }
+      ],
+      "total": 42,
+      "totalFinal": 44.1,
+      "data": "28/04/2026, 11:41:12",
+      "id": "Sf-wvArKUL0"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
