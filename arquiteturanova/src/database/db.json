@@ -29,6 +29,33 @@
       "totalFinal": 44.1,
       "data": "28/04/2026, 11:41:12",
       "id": "Sf-wvArKUL0"
+    },
+    {
+      "cliente": "Cliente",
+      "itens": [
+        {
+          "produto": "caldo",
+          "preco": 7,
+          "quantidade": 3,
+          "subtotal": 21
+        },
+        {
+          "produto": "caldo",
+          "preco": 7,
+          "quantidade": 3,
+          "subtotal": 21
+        },
+        {
+          "produto": "caldo",
+          "preco": 7,
+          "quantidade": 3,
+          "subtotal": 21
+        }
+      ],
+      "total": 63,
+      "totalFinal": 59.85,
+      "data": "28/04/2026, 11:57:17",
+      "id": "uzXRwwqfpSM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

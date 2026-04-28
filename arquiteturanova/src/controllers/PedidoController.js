@@ -2,6 +2,7 @@ import { PedidoSingleton } from "../services/PedidoSingleton.js";
 import { PedidoService } from "../services/PedidoService.js";
 import { PedidoRepository } from "../repositories/PedidoRepository.js";
 import { PedidoView } from "../views/PedidoView.js";
+import { WhatsAppService } from "../services/WhatsAppService.js";
 
 const pedidoInstance = new PedidoSingleton();
 const pedido = pedidoInstance.getPedido();
@@ -28,6 +29,14 @@ window.adicionar = function () {
 
 window.finalizar = async function () {
   try {
+    const nomeCliente = document.getElementById("nomeCliente").value;
+    const numeroCliente = document.getElementById("numeroCliente").value;
+
+    if (!nomeCliente || !numeroCliente) {
+      alert("Preencha o nome e o número do cliente");
+      return;
+    }
+
     if (pedido.itens.length === 0) {
       alert("Adicione pelo menos um item ao pedido");
       return;
@@ -37,11 +46,14 @@ window.finalizar = async function () {
 
     await repository.salvarPedido(pedido, totalFinal);
 
-    alert("Pedido salvo no banco fake. Total final: R$ " + totalFinal.toFixed(2));
+    WhatsAppService.enviarParaCliente(numeroCliente, pedido, totalFinal, nomeCliente);
+    WhatsAppService.enviarParaEstabelecimento(pedido, totalFinal, nomeCliente);
+
+    alert("Pedido salvo e enviado via WhatsApp. Total final: R$ " + totalFinal.toFixed(2));
 
     service.limpar();
     view.limpar();
   } catch (e) {
-    alert("Erro ao salvar pedido. Verifique se o JSON Server está rodando.");
+    alert("Erro ao finalizar pedido. Verifique se o JSON Server está rodando.");
   }
 };
